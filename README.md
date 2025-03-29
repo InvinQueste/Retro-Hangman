@@ -2,10 +2,7 @@
 
 This is a simple retro-themed Hangman Game.
 
-## To run:
-
-1. Download the directory
-2. Run "index.html"
+[Try it out here!](https://invinqueste.github.io/Retro-Hangman/)
 
 Note: Currently only supported on Desktop.
 
