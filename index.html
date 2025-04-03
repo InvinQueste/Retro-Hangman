@@ -35,6 +35,23 @@
       var scores = [];
       var started = false;
       var totalGames = 0;
+      var bgm = new Audio(
+        "assets/audio/240508-piano-retro-fairytail-239358.mp3"
+      );
+
+      bgm.volume = 1.0;
+      bgm.loop = true;
+      bgm.muted = false;
+      bgm.preload = "auto";
+      bgm.play().catch((error) => {
+        console.warn("Autoplay failed. Waiting for user interaction...");
+        // Fallback: Play after user interaction
+        document.addEventListener("click", function () {
+          bgm.play().catch((error) => {
+            console.error("Audio playback failed:", error);
+          });
+        });
+      });
     </script>
 
     <script src="assets/scripts/wordList.js"></script>
