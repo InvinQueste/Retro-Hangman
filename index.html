@@ -28,142 +28,28 @@
           },
         },
       };
-    </script>
 
-    <script src="assets/loadWords.js"></script>
-    <script>
       var word;
       var guess;
       var lives;
       var scores = [];
       var started = false;
       var totalGames = 0;
-
-      function getWord() {
-        if (!started) {
-          document
-            .getElementById("heading")
-            .classList.add("absolute", "top-0", "w-[17%]");
-          document.getElementById("heading").classList.remove("w-1/2", "mb-4");
-          started = true;
-        }
-        let i = Math.floor(Math.random() * words.length);
-        word = words[i];
-        guess = word.replace(/./g, "-");
-        document.getElementById("guess").innerHTML = guess.split("").join(" ");
-        lives = 10;
-        updateLives();
-        resetLetterButtons();
-      }
-
-      function check(letter, button) {
-        let cindexes = [];
-
-        for (let i = 0; i < word.length; i++) {
-          if (guess[i] === "-" && word[i] === letter) {
-            cindexes.push(i);
-          }
-        }
-
-        if (cindexes.length > 0) {
-          let rind = cindexes[Math.floor(Math.random() * cindexes.length)];
-          guess = guess.substring(0, rind) + letter + guess.substring(rind + 1);
-          document.getElementById("guess").innerHTML = guess
-            .split("")
-            .join(" ");
-          button.classList.add("bg-green-500", "hover:bg-green-600");
-          button.classList.remove("bg-gray-800", "hover:bg-gray-600");
-          if (!guess.includes("-")) {
-            showPopup("Congratulations! You guessed the word!", "Play Again");
-            disableButtons();
-            totalGames++;
-            scores.push(lives);
-            updateAvgScore();
-            return;
-          }
-        } else {
-          button.classList.add("bg-red-800", "scale-90");
-          button.classList.remove(
-            "bg-green-500",
-            "bg-gray-800",
-            "hover:bg-gray-600",
-            "hover:bg-green-600"
-          );
-          button.disabled = true;
-          lives--;
-          updateLives();
-          if (lives <= 0) {
-            showPopup("Game Over! The word was: " + word, "Try Again");
-            disableButtons();
-            totalGames++;
-            scores.push(0);
-            updateAvgScore();
-            return;
-          }
-        }
-      }
-
-      function updateLives() {
-        let livesDiv = document.getElementById("lives");
-        livesDiv.innerHTML = "";
-        for (let i = 0; i < lives; i++) {
-          livesDiv.innerHTML +=
-            "<img src='assets/full-heart.png' class='w-8 h-8' />";
-        }
-        for (let i = lives; i < 10; i++) {
-          livesDiv.innerHTML +=
-            "<img src='assets/empty-heart.png' class='w-8 h-8' />";
-        }
-      }
-
-      function resetLetterButtons() {
-        let container = document.getElementById("letterbuttons");
-        container.innerHTML = "";
-
-        for (let letter of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
-          let button = document.createElement("button");
-          button.innerText = letter;
-          button.className =
-            "bg-gray-800 text-white text-2xl px-3 py-2 m-1 border-2 border-white rounded-lg transition hover:bg-gray-600 active:scale-90";
-          button.onclick = function () {
-            check(letter, button);
-          };
-          container.appendChild(button);
-          container.appendChild(document.createTextNode(" "));
-        }
-      }
-
-      function showPopup(message, buttonText) {
-        document.getElementById("popup-message").innerText = message;
-        document.getElementById("popup-button").innerText = buttonText;
-        document.getElementById("popup").classList.remove("hidden");
-      }
-
-      function closePopup() {
-        document.getElementById("popup").classList.add("hidden");
-      }
-
-      function updateAvgScore() {
-        if (scores.length === 0) return;
-        let sum = scores.reduce((a, b) => a + b, 0);
-        let avg = (sum / scores.length).toFixed(2);
-        document.getElementById(
-          "avgscore"
-        ).innerText = `Games Played: ${totalGames}
-        Average Score: ${avg}`;
-      }
-
-      function disableButtons() {
-        let buttons = document.querySelectorAll("#letterbuttons button");
-        buttons.forEach((button) => {
-          button.disabled = true;
-          button.classList.remove("hover:bg-gray-600", "hover:bg-gray-600");
-        });
-      }
     </script>
+
+    <script src="assets/scripts/wordList.js"></script>
+
+    <script src="assets/scripts/getWord.js"></script>
+    <script src="assets/scripts/check.js"></script>
+    <script src="assets/scripts/updateLives.js"></script>
+    <script src="assets/scripts/resetLetterButtons.js"></script>
+    <script src="assets/scripts/popup.js"></script>
+    <script src="assets/scripts/updateAvgScore.js"></script>
+    <script src="assets/scripts/disableButtons.js"></script>
   </head>
+
   <body
-    background="assets/background.png"
+    background="assets/images/background.png"
     class="bg-cover bg-center h-screen text-white font-pixelify flex flex-col items-center justify-center"
   >
     <div
@@ -182,7 +68,7 @@
       </div>
     </div>
 
-    <img id="heading" src="assets/logo.png" class="w-1/2 mb-4" />
+    <img id="heading" src="assets/images/logo.png" class="w-1/2 mb-4" />
     <div id="guess" class="text-8xl"></div>
     <br />
     <div id="letterbuttons"></div>
