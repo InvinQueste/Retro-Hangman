@@ -4,7 +4,6 @@ This is a simple retro-themed Hangman Game.
 
 [Try it out here!](https://invinqueste.github.io/Retro-Hangman/)
 
-Note: Currently only supported on Desktop.
 
 ## Preview Images
 
