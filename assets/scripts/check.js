@@ -29,7 +29,7 @@ function check(letter, button) {
     button.classList.remove("bg-gray-800", "hover:bg-gray-600");
     if (!guess.includes("-")) {
       gameClearMusic.play();
-      showPopup("Congratulations! You guessed the word!", "Play Again");
+      showPopup("Congratulations! You guessed the word!", "Okay");
       disableButtons();
       totalGames++;
       scores.push(lives);
@@ -53,7 +53,7 @@ function check(letter, button) {
     updateLives();
     if (lives <= 0) {
       gameOverMusic.play();
-      showPopup("Game Over! The word was: " + word, "Try Again");
+      showPopup("Game Over! The word was: " + word, "Okay");
       disableButtons();
       totalGames++;
       scores.push(0);

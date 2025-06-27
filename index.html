@@ -64,10 +64,20 @@
     <script src="assets/scripts/popup.js"></script>
     <script src="assets/scripts/updateAvgScore.js"></script>
     <script src="assets/scripts/disableButtons.js"></script>
+
+    <style>
+      body {
+        background-image: url("assets/images/background.png");
+      }
+      @media (max-width: 640px) {
+        body {
+          background-image: url("assets/images/background-mobile.png");
+        }
+      }
+    </style>
   </head>
 
   <body
-    background="assets/images/background.png"
     class="bg-cover bg-center h-screen text-white font-pixelify flex flex-col items-center justify-center"
   >
     <div
@@ -75,7 +85,7 @@
       class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
     >
       <div
-        class="bg-popupblue p-6 rounded-lg shadow-lg text-center text-popuptext border-2 border-white rounded-lg"
+        class="bg-popupblue p-6 rounded-lg shadow-lg text-center text-popuptext border-2 border-white rounded-lg mx-4 sm:mx-0"
       >
         <p id="popup-message" class="text-2xl font-semibold mb-4"></p>
         <button
@@ -86,13 +96,20 @@
       </div>
     </div>
 
-    <img id="heading" src="assets/images/logo.png" class="w-1/2 mb-4" />
-    <div id="guess" class="text-8xl"></div>
+    <img
+      id="heading"
+      src="assets/images/logo.png"
+      class="w-4/5 sm:w-1/2 mb-4"
+    />
+    <div id="guess" class="sm:text-8xl text-5xl"></div>
     <br />
-    <div id="letterbuttons"></div>
+    <div
+      id="letterbuttons"
+      class="w-full flex justify-center flex-wrap overflow-x-auto mb-5 sm:mb-50"
+    ></div>
     <div class="absolute top-0 right-0 p-4 flex flex-col items-end">
       <div id="lives" class="flex flex-row"></div>
-      <div id="avgscore" class="text-avgpink text-3xl"></div>
+      <div id="avgscore" class="text-avgpink sm:text-3xl text-sm"></div>
     </div>
     <br />
     <button
