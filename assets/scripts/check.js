@@ -32,6 +32,7 @@ function check(letter, button) {
       showPopup("Congratulations! You guessed the word!", "Okay");
       disableButtons();
       totalGames++;
+      wonGames++;
       scores.push(lives);
       updateAvgScore();
       return;

@@ -3,5 +3,6 @@ function updateAvgScore() {
   let sum = scores.reduce((a, b) => a + b, 0);
   let avg = (sum / scores.length).toFixed(2);
   document.getElementById("avgscore").innerText = `Games Played: ${totalGames}
+  Games Won: ${wonGames}
     Average Score: ${avg}`;
 }
